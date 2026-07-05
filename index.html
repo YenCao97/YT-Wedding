@@ -52,7 +52,7 @@ img{ max-width: 100%; display: block; }
 a{ color: inherit; }
 
 /* ---------------------------------------------------------
-   ENVELOPE INTRO — textured moss envelope, wine frame, gold monogram
+   ENVELOPE INTRO — olive envelope back, gold wax seal
    --------------------------------------------------------- */
 #envelope-screen{
   position: fixed;
@@ -60,23 +60,15 @@ a{ color: inherit; }
   z-index: 100;
   cursor: pointer;
   overflow: hidden;
-  background-color: #6e8c2f;
-  background-image:
-    radial-gradient(circle at 50% 42%, rgba(0,0,0,0) 35%, rgba(0,0,0,.3) 100%),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='%23F2EDDF' stroke-width='1' opacity='0.16'%3E%3Cg transform='translate(20,25) rotate(-8)'%3E%3Crect x='0' y='0' width='26' height='18' rx='1'/%3E%3Cpath d='M0,0 L13,11 L26,0'/%3E%3Cpath d='M9,-7 q4,-6 8,0 q-4,4 -8,0z'/%3E%3C/g%3E%3Cg transform='translate(98,52) rotate(10)'%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Cpath d='M-5,0 q-11,-8 -15,2 q8,4 15,-2z'/%3E%3Cpath d='M5,0 q11,-8 15,2 q-8,4 -15,-2z'/%3E%3Cpath d='M-3,5 q3,6 6,0'/%3E%3C/g%3E%3Cg transform='translate(60,108)'%3E%3Cpath d='M0,-5 L1.2,-1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,-1.2 Z'/%3E%3C/g%3E%3Cg transform='translate(112,132) rotate(6)'%3E%3Crect x='0' y='0' width='22' height='15' rx='1'/%3E%3Cpath d='M0,0 L11,9 L22,0'/%3E%3C/g%3E%3Cg transform='translate(24,122) rotate(-14)'%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Cpath d='M-4,0 q-9,-6 -12,2 q6,3 12,-2z'/%3E%3Cpath d='M4,0 q9,-6 12,2 q-6,3 -12,-2z'/%3E%3C/g%3E%3Cg transform='translate(140,20)'%3E%3Cpath d='M0,-4 L1,-1 L4,0 L1,1 L0,4 L-1,1 L-4,0 L-1,-1 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  background-size: cover, 160px 160px;
-  background-position: center, center;
-  background-repeat: no-repeat, repeat;
+  background-color: #47601f;
   transition: opacity .8s ease, transform .8s ease;
 }
 
-#envelope-screen::before{
-  content: '';
+.envelope-flap{
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  opacity: .07;
-  mix-blend-mode: overlay;
+  background: #6e8c2f;
+  clip-path: polygon(0 0, 100% 0, 50% 46%);
   pointer-events: none;
 }
 
@@ -89,30 +81,37 @@ body.opened #envelope-screen{
 html.no-scroll,
 html.no-scroll body{ overflow: hidden; height: 100%; }
 
-.envelope-frame{
+.envelope-seal{
   position: absolute;
-  inset: 16px;
-  border: 3px solid rgba(107,35,56,.9);
-  border-radius: 18px;
+  top: 46%;
+  left: 50%;
+  width: 148px;
+  height: 148px;
+  transform: translate(-50%, -50%);
+  border-radius: 48% 52% 51% 49% / 53% 47% 53% 47%;
+  background: radial-gradient(circle at 34% 30%, #e0c07f 0%, #c69a4e 45%, #96702a 78%, #7c5a20 100%);
+  box-shadow: 0 10px 24px rgba(0,0,0,.35), inset 0 0 0 3px rgba(255,255,255,.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.envelope-seal::before{
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  background: radial-gradient(circle at 38% 32%, rgba(255,255,255,.28), transparent 60%);
   pointer-events: none;
 }
 
-.envelope-monogram{
-  position: absolute;
-  top: 44%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.envelope-seal__text{
+  position: relative;
   font-family: 'Carattere', cursive;
-  font-size: 84px;
+  font-size: 34px;
   line-height: 1;
-  color: #CDA24D;
-  text-shadow: 0 2px 4px rgba(0,0,0,.28);
-}
-
-.envelope-monogram .amp{
-  font-size: .68em;
-  padding: 0 8px;
-  vertical-align: middle;
+  color: #faf3dd;
+  text-shadow: 0 1px 2px rgba(0,0,0,.35);
 }
 
 .envelope__hint{
@@ -729,8 +728,10 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
      PHONG BÌ MỞ ĐẦU — chạm để mở thiệp
      ========================================================= -->
 <div id="envelope-screen" aria-label="Màn hình mở thiệp">
-  <div class="envelope-frame"></div>
-  <div class="envelope-monogram" id="seal-tap">Y<span class="amp">&amp;</span>T</div>
+  <div class="envelope-flap"></div>
+  <div class="envelope-seal" id="seal-tap">
+    <span class="envelope-seal__text">Y &amp; T</span>
+  </div>
   <p class="envelope__hint">Chạm để mở thiệp</p>
 </div>
 
