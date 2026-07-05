@@ -7,7 +7,7 @@
 <meta name="description" content="Thiệp mời cưới online của Cao Ngọc Yến & Hoàng Nhất Tâm — 12.12.2026 tại Hilly Garden, Đà Lạt">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&family=Pinyon+Script&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
    Y & T — Thiệp cưới online
@@ -52,17 +52,32 @@ img{ max-width: 100%; display: block; }
 a{ color: inherit; }
 
 /* ---------------------------------------------------------
-   ENVELOPE INTRO
+   ENVELOPE INTRO — textured moss envelope, wine frame, gold monogram
    --------------------------------------------------------- */
 #envelope-screen{
   position: fixed;
   inset: 0;
   z-index: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(circle at 50% 30%, #EFE7D6 0%, #E4D9C2 55%, #D8CBAE 100%);
+  cursor: pointer;
+  overflow: hidden;
+  background-color: #5B6A47;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(0,0,0,0) 35%, rgba(0,0,0,.3) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cg fill='none' stroke='%23F2EDDF' stroke-width='1' opacity='0.16'%3E%3Cg transform='translate(20,25) rotate(-8)'%3E%3Crect x='0' y='0' width='26' height='18' rx='1'/%3E%3Cpath d='M0,0 L13,11 L26,0'/%3E%3Cpath d='M9,-7 q4,-6 8,0 q-4,4 -8,0z'/%3E%3C/g%3E%3Cg transform='translate(98,52) rotate(10)'%3E%3Ccircle cx='0' cy='0' r='5'/%3E%3Cpath d='M-5,0 q-11,-8 -15,2 q8,4 15,-2z'/%3E%3Cpath d='M5,0 q11,-8 15,2 q-8,4 -15,-2z'/%3E%3Cpath d='M-3,5 q3,6 6,0'/%3E%3C/g%3E%3Cg transform='translate(60,108)'%3E%3Cpath d='M0,-5 L1.2,-1.2 L5,0 L1.2,1.2 L0,5 L-1.2,1.2 L-5,0 L-1.2,-1.2 Z'/%3E%3C/g%3E%3Cg transform='translate(112,132) rotate(6)'%3E%3Crect x='0' y='0' width='22' height='15' rx='1'/%3E%3Cpath d='M0,0 L11,9 L22,0'/%3E%3C/g%3E%3Cg transform='translate(24,122) rotate(-14)'%3E%3Ccircle cx='0' cy='0' r='4'/%3E%3Cpath d='M-4,0 q-9,-6 -12,2 q6,3 12,-2z'/%3E%3Cpath d='M4,0 q9,-6 12,2 q-6,3 -12,-2z'/%3E%3C/g%3E%3Cg transform='translate(140,20)'%3E%3Cpath d='M0,-4 L1,-1 L4,0 L1,1 L0,4 L-1,1 L-4,0 L-1,-1 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover, 160px 160px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
   transition: opacity .8s ease, transform .8s ease;
+}
+
+#envelope-screen::before{
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: .07;
+  mix-blend-mode: overlay;
+  pointer-events: none;
 }
 
 body.opened #envelope-screen{
@@ -74,64 +89,44 @@ body.opened #envelope-screen{
 html.no-scroll,
 html.no-scroll body{ overflow: hidden; height: 100%; }
 
-.envelope{
-  text-align: center;
-  color: var(--pine);
-}
-
-.envelope__body{
-  width: 220px;
-  height: 150px;
-  margin: 0 auto;
-  position: relative;
-  background: #EFE6D2;
-  border: 1px solid rgba(44,58,46,.25);
-  border-radius: 4px;
-  box-shadow: 0 18px 40px rgba(44,58,46,.25);
-}
-
-.envelope__flap{
+.envelope-frame{
   position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 0;
-  border-left: 110px solid transparent;
-  border-right: 110px solid transparent;
-  border-top: 90px solid #E4D8BE;
-  filter: drop-shadow(0 2px 4px rgba(44,58,46,.15));
+  inset: 16px;
+  border: 3px solid rgba(107,35,56,.9);
+  border-radius: 18px;
+  pointer-events: none;
 }
 
-.seal{
+.envelope-monogram{
   position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%,-50%);
-  width: 64px; height: 64px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #C9A46E, var(--gold) 60%, #8E6F42 100%);
-  display: flex; align-items: center; justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 6px 14px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.15);
-  animation: seal-pulse 2.2s ease-in-out infinite;
+  top: 44%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Pinyon Script', 'Playfair Display', cursive;
+  font-size: 84px;
+  line-height: 1;
+  color: #CDA24D;
+  text-shadow: 0 2px 4px rgba(0,0,0,.28);
 }
 
-@keyframes seal-pulse{
-  0%, 100%{ transform: translate(-50%,-50%) scale(1); }
-  50%{ transform: translate(-50%,-50%) scale(1.06); }
-}
-
-.seal__monogram{
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--cream);
-  letter-spacing: .5px;
+.envelope-monogram .amp{
+  font-size: .68em;
+  padding: 0 8px;
+  vertical-align: middle;
 }
 
 .envelope__hint{
-  margin-top: 28px;
-  font-size: 13px;
-  letter-spacing: 3px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 64px;
+  margin: 0;
+  text-align: center;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--brown);
+  color: #F4EFE3;
 }
 
 /* ---------------------------------------------------------
@@ -602,15 +597,9 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
      PHONG BÌ MỞ ĐẦU — chạm để mở thiệp
      ========================================================= -->
 <div id="envelope-screen" aria-label="Màn hình mở thiệp">
-  <div class="envelope">
-    <div class="envelope__body">
-      <div class="envelope__flap"></div>
-      <div class="seal" id="seal-tap">
-        <span class="seal__monogram">T&nbsp;&amp;&nbsp;Y</span>
-      </div>
-    </div>
-    <p class="envelope__hint">Chạm để mở thiệp</p>
-  </div>
+  <div class="envelope-frame"></div>
+  <div class="envelope-monogram" id="seal-tap">Y<span class="amp">&amp;</span>T</div>
+  <p class="envelope__hint">Chạm để mở thiệp</p>
 </div>
 
 <!-- =========================================================
