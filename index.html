@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="vi" class="no-scroll">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yến & Tâm | 12.12.2026</title>
+<meta name="description" content="Thiệp mời cưới online của Cao Ngọc Yến & Hoàng Nhất Tâm — 12.12.2026 tại Hilly Garden, Đà Lạt">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Y & T — Thiệp cưới online
+   Bảng màu: xanh thông #2C3A2E · kem #F7F8F2 · vàng đồng #B08D57
+   ========================================================= */
+
+:root{
+  --pine: #2C3A2E;
+  --pine-dark: #1B241C;
+  --cream: #F7F8F2;
+  --gold: #B08D57;
+  --brown: #6E5645;
+  --serif: 'Playfair Display', 'Times New Roman', serif;
+  --sans: 'Jost', 'Helvetica Neue', Arial, sans-serif;
+  --max-w: 480px;
+}
+
+*{ box-sizing: border-box; }
+
+html{ scroll-behavior: smooth; }
+
+body{
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--cream);
+  background: var(--pine-dark);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Center the phone-width experience on wider screens */
+#site{
+  max-width: var(--max-w);
+  margin: 0 auto;
+  background: var(--pine);
+  box-shadow: 0 0 60px rgba(0,0,0,.5);
+  position: relative;
+}
+
+img{ max-width: 100%; display: block; }
+
+a{ color: inherit; }
+
+/* ---------------------------------------------------------
+   ENVELOPE INTRO
+   --------------------------------------------------------- */
+#envelope-screen{
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 30%, #EFE7D6 0%, #E4D9C2 55%, #D8CBAE 100%);
+  transition: opacity .8s ease, transform .8s ease;
+}
+
+body.opened #envelope-screen{
+  opacity: 0;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+
+html.no-scroll,
+html.no-scroll body{ overflow: hidden; height: 100%; }
+
+.envelope{
+  text-align: center;
+  color: var(--pine);
+}
+
+.envelope__body{
+  width: 220px;
+  height: 150px;
+  margin: 0 auto;
+  position: relative;
+  background: #EFE6D2;
+  border: 1px solid rgba(44,58,46,.25);
+  border-radius: 4px;
+  box-shadow: 0 18px 40px rgba(44,58,46,.25);
+}
+
+.envelope__flap{
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 0;
+  border-left: 110px solid transparent;
+  border-right: 110px solid transparent;
+  border-top: 90px solid #E4D8BE;
+  filter: drop-shadow(0 2px 4px rgba(44,58,46,.15));
+}
+
+.seal{
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #C9A46E, var(--gold) 60%, #8E6F42 100%);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(0,0,0,.35), inset 0 0 0 2px rgba(255,255,255,.15);
+  animation: seal-pulse 2.2s ease-in-out infinite;
+}
+
+@keyframes seal-pulse{
+  0%, 100%{ transform: translate(-50%,-50%) scale(1); }
+  50%{ transform: translate(-50%,-50%) scale(1.06); }
+}
+
+.seal__monogram{
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 15px;
+  color: var(--cream);
+  letter-spacing: .5px;
+}
+
+.envelope__hint{
+  margin-top: 28px;
+  font-size: 13px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--brown);
+}
+
+/* ---------------------------------------------------------
+   SECTIONS — full-bleed photo backgrounds
+   --------------------------------------------------------- */
+.section{
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 64px 28px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Photo background with graceful fallback:
+   if the jpg at the given path is missing, only the pine-toned
+   gradient renders, so the section still looks intentional. */
+.photo-bg{
+  background-color: var(--pine);
+  background-image:
+    linear-gradient(to bottom, rgba(27,36,28,.35) 0%, rgba(27,36,28,.55) 100%),
+    var(--bg-img, none);
+  background-size: cover, cover;
+  background-position: center, center;
+  background-repeat: no-repeat, no-repeat;
+}
+
+.photo-bg--dark{
+  background-image:
+    linear-gradient(to bottom, rgba(20,27,21,.55) 0%, rgba(20,27,21,.75) 100%),
+    var(--bg-img, none);
+}
+
+.section__inner{
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .9s ease, transform .9s ease;
+}
+
+.section__inner.in-view{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.eyebrow{
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 14px;
+}
+
+.section-title{
+  font-family: var(--serif);
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0 0 28px;
+  color: var(--cream);
+}
+
+.subtitle{
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 500;
+  margin: 34px 0 18px;
+  color: var(--gold);
+}
+
+/* ---------------------------------------------------------
+   COVER
+   --------------------------------------------------------- */
+.names{
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 34px;
+  line-height: 1.25;
+  margin: 0 0 22px;
+}
+
+.names .amp{
+  font-style: italic;
+  color: var(--gold);
+  font-weight: 400;
+  padding: 0 4px;
+}
+
+.cover-date{
+  font-family: var(--serif);
+  font-size: 20px;
+  letter-spacing: 4px;
+  color: var(--gold);
+  margin: 0 0 8px;
+}
+
+.cover-place{
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--cream);
+  opacity: .85;
+  margin: 0 0 40px;
+}
+
+.cover-invite{
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 320px;
+  margin: 0 auto;
+  color: var(--cream);
+  opacity: .95;
+}
+
+.scroll-cue{
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--cream);
+  opacity: .7;
+}
+
+.scroll-cue span{
+  width: 1px; height: 34px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: cue-flow 1.8s ease-in-out infinite;
+}
+
+.scroll-cue small{
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+@keyframes cue-flow{
+  0%{ opacity: 0; transform: translateY(-6px); }
+  50%{ opacity: 1; }
+  100%{ opacity: 0; transform: translateY(10px); }
+}
+
+/* ---------------------------------------------------------
+   COUNTDOWN
+   --------------------------------------------------------- */
+.countdown{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 18px 0 22px;
+}
+
+.countdown__unit{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+}
+
+.countdown__num{
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1;
+}
+
+.countdown__label{
+  margin-top: 6px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.countdown__sep{
+  font-family: var(--serif);
+  font-size: 28px;
+  color: var(--gold);
+  transform: translateY(-8px);
+}
+
+.countdown__note{
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: var(--cream);
+  opacity: .8;
+}
+
+/* ---------------------------------------------------------
+   DETAILS
+   --------------------------------------------------------- */
+.detail-row{
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 8px;
+}
+
+.detail-row__time{
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--gold);
+  min-width: 52px;
+  text-align: right;
+}
+
+.detail-row__text{
+  font-size: 14px;
+  color: var(--cream);
+}
+
+.place-card{
+  margin: 26px auto 8px;
+  padding: 20px;
+  border: 1px solid rgba(176,141,87,.4);
+  border-radius: 6px;
+  background: rgba(0,0,0,.15);
+  max-width: 320px;
+}
+
+.place-card__name{
+  font-family: var(--serif);
+  font-size: 17px;
+  margin: 0 0 14px;
+}
+
+.btn{
+  display: inline-block;
+  padding: 12px 26px;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: transform .2s ease, background .2s ease, opacity .2s ease;
+}
+
+.btn--outline{
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+
+.btn--outline:hover{ background: rgba(176,141,87,.12); }
+
+.btn--solid{
+  border: none;
+  background: var(--gold);
+  color: var(--cream);
+  width: 100%;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.btn--solid:hover{ opacity: .92; }
+.btn:active{ transform: scale(.97); }
+
+.timeline{
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 280px;
+  text-align: left;
+  position: relative;
+}
+
+.timeline__item{
+  position: relative;
+  padding-left: 26px;
+  padding-bottom: 22px;
+  border-left: 1px solid rgba(176,141,87,.5);
+  margin-left: 6px;
+}
+
+.timeline__item:last-child{ border-color: transparent; padding-bottom: 0; }
+
+.timeline__item::before{
+  content: '';
+  position: absolute;
+  left: -5px; top: 2px;
+  width: 9px; height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 0 3px rgba(176,141,87,.2);
+}
+
+.timeline__time{
+  display: block;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: var(--gold);
+  margin-bottom: 2px;
+}
+
+.timeline__text{
+  font-size: 14px;
+  color: var(--cream);
+  opacity: .9;
+}
+
+.dresscode{
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0 12px;
+}
+
+.dresscode__swatch{
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba(247,248,242,.4);
+  display: inline-block;
+}
+
+.dresscode__note{
+  font-size: 12px;
+  color: var(--cream);
+  opacity: .75;
+  max-width: 260px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------
+   GALLERY
+   --------------------------------------------------------- */
+.section--gallery{ background: var(--pine); }
+
+.gallery-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.gallery-item{
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  border: 1px solid rgba(176,141,87,.35);
+  border-radius: 3px;
+  background: linear-gradient(160deg, #33422f, #24302a);
+}
+
+.gallery-item img{
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+.gallery-item.img-missing{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gallery-item.img-missing img{ display: none; }
+
+.gallery-item.img-missing::after{
+  content: '\2022';
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--gold);
+  opacity: .6;
+}
+
+/* ---------------------------------------------------------
+   RSVP
+   --------------------------------------------------------- */
+.rsvp-form{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.field{
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.field input,
+.field select,
+.field textarea{
+  font-family: var(--sans);
+  font-size: 14px;
+  text-transform: none;
+  letter-spacing: normal;
+  color: var(--pine);
+  background: var(--cream);
+  border: none;
+  border-radius: 3px;
+  padding: 12px 12px;
+  resize: vertical;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline: 2px solid var(--gold);
+}
+
+.rsvp-status{
+  min-height: 18px;
+  font-size: 12px;
+  color: var(--gold);
+  margin: 0;
+  text-align: center;
+}
+
+.rsvp-thankyou{
+  max-width: 320px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  border: 1px solid rgba(176,141,87,.4);
+  border-radius: 6px;
+  background: rgba(0,0,0,.15);
+}
+
+.rsvp-thankyou__title{
+  font-family: var(--serif);
+  font-size: 22px;
+  color: var(--gold);
+  margin: 0 0 10px;
+}
+
+.rsvp-thankyou__text{
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.footer-note{
+  margin-top: 46px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--gold);
+  opacity: .8;
+}
+
+/* ---------------------------------------------------------
+   RESPONSIVE — tighten spacing on very small phones
+   --------------------------------------------------------- */
+@media (max-width: 360px){
+  .names{ font-size: 28px; }
+  .section{ padding: 48px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================================================
+     PHONG BÌ MỞ ĐẦU — chạm để mở thiệp
+     ========================================================= -->
+<div id="envelope-screen" aria-label="Màn hình mở thiệp">
+  <div class="envelope">
+    <div class="envelope__body">
+      <div class="envelope__flap"></div>
+      <div class="seal" id="seal-tap">
+        <span class="seal__monogram">T&nbsp;&amp;&nbsp;Y</span>
+      </div>
+    </div>
+    <p class="envelope__hint">Chạm để mở thiệp</p>
+  </div>
+</div>
+
+<!-- =========================================================
+     NỘI DUNG CHÍNH
+     ========================================================= -->
+<main id="site">
+
+  <!-- 1. TRANG BÌA ------------------------------------------------->
+  <section class="section section--cover photo-bg" id="cover" data-bg-img="images/cover.jpg">
+    <div class="section__inner" data-animate>
+      <p class="eyebrow">Save the date</p>
+      <h1 class="names">Cao Ngọc Yến <span class="amp">&amp;</span> Hoàng Nhất Tâm</h1>
+      <p class="cover-date">12 . 12 . 2026</p>
+      <p class="cover-place">Hilly Garden, Đà Lạt</p>
+      <p class="cover-invite">
+        Tình yêu là hành trình đẹp nhất khi có bạn dõi theo.<br>
+        Trân trọng kính mời bạn cùng chung vui trong ngày trọng đại của chúng tôi.
+      </p>
+      <div class="scroll-cue" aria-hidden="true">
+        <span></span>
+        <small>Cuộn xuống</small>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. ĐẾM NGƯỢC --------------------------------------------------->
+  <section class="section section--countdown photo-bg" id="countdown" data-bg-img="images/countdown.jpg">
+    <div class="section__inner" data-animate>
+      <p class="eyebrow">Đếm ngược đến ngày trọng đại</p>
+      <div class="countdown" id="countdown-clock">
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-days">00</span>
+          <span class="countdown__label">Ngày</span>
+        </div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-hours">00</span>
+          <span class="countdown__label">Giờ</span>
+        </div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-mins">00</span>
+          <span class="countdown__label">Phút</span>
+        </div>
+        <div class="countdown__sep">:</div>
+        <div class="countdown__unit">
+          <span class="countdown__num" id="cd-secs">00</span>
+          <span class="countdown__label">Giây</span>
+        </div>
+      </div>
+      <p class="countdown__note">12.12.2026 · Hilly Garden, Đà Lạt</p>
+    </div>
+  </section>
+
+  <!-- 3. THÔNG TIN CHI TIẾT ------------------------------------------>
+  <section class="section section--details photo-bg photo-bg--dark" id="details" data-bg-img="images/details.jpg">
+    <div class="section__inner" data-animate>
+      <p class="eyebrow">Thông tin buổi lễ</p>
+      <h2 class="section-title">Chi tiết & Chương trình</h2>
+
+      <!-- SỬA GIỜ THẬT Ở ĐÂY: đón khách / làm lễ -->
+      <div class="detail-row">
+        <div class="detail-row__time">16:00</div>
+        <div class="detail-row__text">Đón khách</div>
+      </div>
+      <div class="detail-row">
+        <div class="detail-row__time">17:00</div>
+        <div class="detail-row__text">Làm lễ thành hôn</div>
+      </div>
+
+      <div class="place-card">
+        <p class="place-card__name">Hilly Garden, Đà Lạt</p>
+        <a class="btn btn--outline" id="maps-btn"
+           href="https://www.google.com/maps/search/?api=1&amp;query=Hilly+Garden+%C4%90%C3%A0+L%E1%BA%A1t"
+           target="_blank" rel="noopener">Xem trên Google Maps</a>
+      </div>
+
+      <h3 class="subtitle">Timeline trong ngày</h3>
+      <!-- SỬA CÁC MỐC GIỜ THẬT Ở ĐÂY -->
+      <ul class="timeline">
+        <li class="timeline__item">
+          <span class="timeline__time">16:00</span>
+          <span class="timeline__text">Đón khách</span>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__time">17:00</span>
+          <span class="timeline__text">Lễ thành hôn</span>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__time">18:00</span>
+          <span class="timeline__text">Tiệc cưới</span>
+        </li>
+        <li class="timeline__item">
+          <span class="timeline__time">20:00</span>
+          <span class="timeline__text">Giao lưu & chụp ảnh</span>
+        </li>
+      </ul>
+
+      <h3 class="subtitle">Gợi ý trang phục</h3>
+      <div class="dresscode">
+        <span class="dresscode__swatch" style="background:#2C3A2E" title="Xanh thông"></span>
+        <span class="dresscode__swatch" style="background:#6B7A5E" title="Xanh rêu"></span>
+        <span class="dresscode__swatch" style="background:#F7F8F2" title="Kem"></span>
+        <span class="dresscode__swatch" style="background:#B08D57" title="Vàng đồng"></span>
+        <span class="dresscode__swatch" style="background:#6E5645" title="Nâu"></span>
+      </div>
+      <p class="dresscode__note">Tông xanh thông – kem – nâu, trang trọng và ấm áp.</p>
+    </div>
+  </section>
+
+  <!-- 4. GALLERY ------------------------------------------------------>
+  <section class="section section--gallery" id="gallery">
+    <div class="section__inner" data-animate>
+      <p class="eyebrow">Khoảnh khắc</p>
+      <h2 class="section-title">Gallery ảnh cưới</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="images/gallery-1.jpg" alt="Ảnh cưới 1" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-2.jpg" alt="Ảnh cưới 2" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-3.jpg" alt="Ảnh cưới 3" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-4.jpg" alt="Ảnh cưới 4" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-5.jpg" alt="Ảnh cưới 5" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-6.jpg" alt="Ảnh cưới 6" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-7.jpg" alt="Ảnh cưới 7" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+        <div class="gallery-item"><img src="images/gallery-8.jpg" alt="Ảnh cưới 8" loading="lazy" onerror="this.parentElement.classList.add('img-missing')"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. RSVP ----------------------------------------------------------->
+  <section class="section section--rsvp photo-bg photo-bg--dark" id="rsvp" data-bg-img="images/rsvp.jpg">
+    <div class="section__inner" data-animate>
+      <p class="eyebrow">Rất mong được đón tiếp</p>
+      <h2 class="section-title">Xác nhận tham dự</h2>
+
+      <form id="rsvp-form" class="rsvp-form">
+        <label class="field">
+          <span>Họ và tên</span>
+          <input type="text" name="name" required placeholder="Nguyễn Văn A">
+        </label>
+
+        <label class="field">
+          <span>Bạn có thể tham dự?</span>
+          <select name="attending" required>
+            <option value="" disabled selected>Chọn câu trả lời</option>
+            <option value="Có, tôi sẽ tham dự">Có, tôi sẽ tham dự</option>
+            <option value="Rất tiếc, tôi không thể tham dự">Rất tiếc, tôi không thể tham dự</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Số lượng khách (kể cả bạn)</span>
+          <input type="number" name="guests" min="1" max="10" value="1" required>
+        </label>
+
+        <label class="field">
+          <span>Lời nhắn gửi cô dâu &amp; chú rể</span>
+          <textarea name="message" rows="3" placeholder="Gửi lời chúc của bạn..."></textarea>
+        </label>
+
+        <button type="submit" class="btn btn--solid" id="rsvp-submit">Gửi xác nhận</button>
+        <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="rsvp-thankyou" id="rsvp-thankyou" hidden>
+        <p class="rsvp-thankyou__title">Cảm ơn bạn!</p>
+        <p class="rsvp-thankyou__text">Chúng tôi đã nhận được phản hồi của bạn và rất mong được gặp bạn trong ngày cưới.</p>
+      </div>
+
+      <p class="footer-note">Cao Ngọc Yến &amp; Hoàng Nhất Tâm · 12.12.2026</p>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* =========================================================
+   Y & T — Thiệp cưới online
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   CẤU HÌNH — chỉnh các dòng dưới đây cho đúng thực tế
+   --------------------------------------------------------- */
+const CONFIG = {
+  // Ngày giờ làm lễ dùng để đếm ngược. Định dạng: YYYY-MM-DDTHH:MM:SS+07:00
+  // SỬA giờ cho đúng giờ làm lễ thật (hiện đang để tạm 16:00).
+  WEDDING_DATETIME: "2026-12-12T16:00:00+07:00",
+
+  // Dán URL Web App của Google Apps Script vào đây sau khi deploy
+  // (xem hướng dẫn trong README-HUONG-DAN.md). Để trống thì RSVP
+  // vẫn hiện lời cảm ơn nhưng KHÔNG có dữ liệu nào được lưu lại.
+  GAS_URL: ""
+};
+
+/* ---------------------------------------------------------
+   1. Gán ảnh nền cho các section (data-bg-img -> CSS var)
+   --------------------------------------------------------- */
+document.querySelectorAll(".photo-bg[data-bg-img]").forEach((el) => {
+  const path = el.getAttribute("data-bg-img");
+  el.style.setProperty("--bg-img", `url('${path}')`);
+});
+
+/* ---------------------------------------------------------
+   2. Mở phong bì
+   --------------------------------------------------------- */
+function openEnvelope() {
+  document.body.classList.add("opened");
+  document.documentElement.classList.remove("no-scroll");
+}
+
+const sealBtn = document.getElementById("seal-tap");
+const envelopeScreen = document.getElementById("envelope-screen");
+if (sealBtn) sealBtn.addEventListener("click", openEnvelope);
+if (envelopeScreen) envelopeScreen.addEventListener("click", openEnvelope);
+
+/* ---------------------------------------------------------
+   3. Đếm ngược
+   --------------------------------------------------------- */
+function updateCountdown() {
+  const target = new Date(CONFIG.WEDDING_DATETIME).getTime();
+  const now = Date.now();
+  let diff = Math.max(0, target - now);
+
+  const day = 24 * 60 * 60 * 1000;
+  const hour = 60 * 60 * 1000;
+  const min = 60 * 1000;
+
+  const days = Math.floor(diff / day);
+  diff -= days * day;
+  const hours = Math.floor(diff / hour);
+  diff -= hours * hour;
+  const mins = Math.floor(diff / min);
+  diff -= mins * min;
+  const secs = Math.floor(diff / 1000);
+
+  const pad = (n) => String(n).padStart(2, "0");
+
+  const elDays = document.getElementById("cd-days");
+  const elHours = document.getElementById("cd-hours");
+  const elMins = document.getElementById("cd-mins");
+  const elSecs = document.getElementById("cd-secs");
+
+  if (elDays) elDays.textContent = pad(days);
+  if (elHours) elHours.textContent = pad(hours);
+  if (elMins) elMins.textContent = pad(mins);
+  if (elSecs) elSecs.textContent = pad(secs);
+}
+
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+/* ---------------------------------------------------------
+   4. Hiệu ứng fade + slide-up khi cuộn
+   --------------------------------------------------------- */
+const animatedEls = document.querySelectorAll("[data-animate]");
+
+if ("IntersectionObserver" in window) {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+  animatedEls.forEach((el) => observer.observe(el));
+} else {
+  // Fallback: hiện toàn bộ nếu trình duyệt không hỗ trợ
+  animatedEls.forEach((el) => el.classList.add("in-view"));
+}
+
+/* ---------------------------------------------------------
+   5. RSVP — gửi dữ liệu tới Google Apps Script
+   --------------------------------------------------------- */
+const rsvpForm = document.getElementById("rsvp-form");
+const rsvpStatus = document.getElementById("rsvp-status");
+const rsvpThankyou = document.getElementById("rsvp-thankyou");
+
+if (rsvpForm) {
+  rsvpForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    if (!CONFIG.GAS_URL) {
+      rsvpStatus.textContent =
+        "Chưa kết nối nơi lưu dữ liệu — xem README-HUONG-DAN.md để hoàn tất bước cuối.";
+      return;
+    }
+
+    const submitBtn = document.getElementById("rsvp-submit");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Đang gửi...";
+    rsvpStatus.textContent = "";
+
+    const formData = new FormData(rsvpForm);
+
+    fetch(CONFIG.GAS_URL, {
+      method: "POST",
+      mode: "no-cors", // Apps Script không trả CORS header; gửi kiểu "fire-and-forget"
+      body: formData
+    })
+      .then(() => {
+        rsvpForm.hidden = true;
+        rsvpThankyou.hidden = false;
+      })
+      .catch(() => {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Gửi xác nhận";
+        rsvpStatus.textContent =
+          "Có lỗi khi gửi, vui lòng kiểm tra kết nối mạng và thử lại.";
+      });
+  });
+}
+</script>
+</body>
+</html>
