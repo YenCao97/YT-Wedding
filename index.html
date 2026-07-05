@@ -499,15 +499,66 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
 }
 
 /* ---------------------------------------------------------
-   RSVP
+   RSVP — thiệp giấy kem, khung viền rượu vang
    --------------------------------------------------------- */
+.section--rsvp{
+  background-color: #F3EFE6;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%232C3A2E' stroke-width='1' opacity='0.05'%3E%3Ctext x='6' y='30' font-family='Georgia,serif' font-style='italic' font-size='16' stroke-width='.6'%3EY %26 T%3C/text%3E%3Ctext x='110' y='95' font-family='Georgia,serif' font-style='italic' font-size='16' stroke-width='.6'%3E12.12.2026%3C/text%3E%3Cg transform='translate(40,140)'%3E%3Cpath d='M0,-6 L1.2,-1.2 L6,0 L1.2,1.2 L0,6 L-1.2,1.2 L-6,0 L-1.2,-1.2 Z'/%3E%3C/g%3E%3Ctext x='150' y='190' font-family='Georgia,serif' font-style='italic' font-size='16' stroke-width='.6'%3EY %26 T%3C/text%3E%3Cg transform='translate(190,50)'%3E%3Cpath d='M0,-5 L1,-1 L5,0 L1,1 L0,5 L-1,1 L-5,0 L-1,-1 Z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: cover, 220px 220px;
+  background-position: center, center;
+  background-repeat: no-repeat, repeat;
+  color: var(--pine);
+}
+
+.rsvp-frame{
+  position: absolute;
+  inset: 16px;
+  border: 3px solid rgba(107,35,56,.8);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+.rsvp-logo{
+  font-family: 'Pinyon Script', 'Playfair Display', cursive;
+  font-size: 56px;
+  color: var(--pine);
+  margin: 0 0 6px;
+  line-height: 1;
+}
+
+.rsvp-eyebrow{
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #7C8168;
+  margin: 0 0 6px;
+}
+
+.rsvp-deadline{
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--pine);
+  margin: 0 0 28px;
+}
+
+.rsvp-card{
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(44,58,46,.12);
+  border-radius: 14px;
+  padding: 26px 22px;
+  max-width: 320px;
+  margin: 0 auto;
+  text-align: left;
+  box-shadow: 0 10px 30px rgba(44,58,46,.08);
+}
+
 .rsvp-form{
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  text-align: left;
-  max-width: 320px;
-  margin: 0 auto;
+  gap: 20px;
 }
 
 .rsvp-form[hidden]{ display: none; }
@@ -515,38 +566,125 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
 .field{
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  font-size: 12px;
-  letter-spacing: .5px;
-  text-transform: uppercase;
-  color: var(--gold);
+  gap: 8px;
 }
 
-.field input,
-.field select,
-.field textarea{
+.field__label{
+  font-size: 11px;
+  letter-spacing: .5px;
+  text-transform: uppercase;
+  color: var(--pine);
+  font-weight: 600;
+}
+
+.field--underline input{
+  font-family: var(--sans);
+  font-size: 15px;
+  color: var(--pine);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(44,58,46,.3);
+  border-radius: 0;
+  padding: 6px 2px;
+}
+
+.field--underline input::placeholder{ color: rgba(44,58,46,.4); }
+
+.field--underline input:focus{
+  outline: none;
+  border-bottom-color: var(--pine);
+}
+
+.field--textarea textarea{
   font-family: var(--sans);
   font-size: 14px;
-  text-transform: none;
-  letter-spacing: normal;
   color: var(--pine);
-  background: var(--cream);
-  border: none;
-  border-radius: 3px;
-  padding: 12px 12px;
+  background: rgba(255,255,255,.6);
+  border: 1px solid rgba(44,58,46,.25);
+  border-radius: 6px;
+  padding: 10px 12px;
   resize: vertical;
 }
 
-.field input:focus,
-.field select:focus,
-.field textarea:focus{
-  outline: 2px solid var(--gold);
+.field--textarea textarea::placeholder{ color: rgba(44,58,46,.4); }
+
+.field--textarea textarea:focus{
+  outline: none;
+  border-color: var(--pine);
 }
+
+.field--choice{ gap: 10px; }
+
+.choice{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--pine);
+  cursor: pointer;
+}
+
+.choice input{
+  position: absolute;
+  opacity: 0;
+  width: 0; height: 0;
+}
+
+.choice__box{
+  width: 18px; height: 18px;
+  flex: none;
+  border: 1px solid rgba(44,58,46,.5);
+  border-radius: 3px;
+  position: relative;
+  background: rgba(255,255,255,.6);
+}
+
+.choice input:checked + .choice__box{
+  background: var(--pine);
+  border-color: var(--pine);
+}
+
+.choice input:checked + .choice__box::after{
+  content: '';
+  position: absolute;
+  left: 5px; top: 1px;
+  width: 5px; height: 10px;
+  border: solid var(--cream);
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.choice input:focus-visible + .choice__box{
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+}
+
+.btn--send{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  background: var(--pine);
+  color: var(--cream);
+  width: 100%;
+  padding: 14px;
+  font-family: var(--sans);
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: opacity .2s ease, transform .2s ease;
+}
+
+.btn--send:hover{ opacity: .9; }
+.btn--send:active{ transform: scale(.97); }
 
 .rsvp-status{
   min-height: 18px;
   font-size: 12px;
-  color: var(--gold);
+  color: #8A5A3B;
   margin: 0;
   text-align: center;
 }
@@ -555,15 +693,16 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
   max-width: 320px;
   margin: 0 auto;
   padding: 30px 20px;
-  border: 1px solid rgba(176,141,87,.4);
-  border-radius: 6px;
-  background: rgba(0,0,0,.15);
+  border: 1px solid rgba(44,58,46,.2);
+  border-radius: 10px;
+  background: rgba(255,255,255,.6);
+  text-align: center;
 }
 
 .rsvp-thankyou__title{
-  font-family: var(--serif);
-  font-size: 22px;
-  color: var(--gold);
+  font-family: 'Pinyon Script', var(--serif);
+  font-size: 34px;
+  color: var(--pine);
   margin: 0 0 10px;
 }
 
@@ -571,15 +710,16 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
   font-size: 14px;
   line-height: 1.7;
   margin: 0;
+  color: var(--pine);
 }
 
 .footer-note{
-  margin-top: 46px;
+  margin-top: 32px;
   font-family: var(--serif);
   font-style: italic;
   font-size: 13px;
-  color: var(--gold);
-  opacity: .8;
+  color: var(--pine);
+  opacity: .7;
 }
 
 /* ---------------------------------------------------------
@@ -729,43 +869,61 @@ html.no-scroll body{ overflow: hidden; height: 100%; }
   </section>
 
   <!-- 5. RSVP ----------------------------------------------------------->
-  <section class="section section--rsvp photo-bg photo-bg--dark" id="rsvp" data-bg-img="images/rsvp.jpg">
+  <section class="section section--rsvp" id="rsvp">
+    <div class="rsvp-frame"></div>
     <div class="section__inner" data-animate>
-      <p class="eyebrow">Rất mong được đón tiếp</p>
-      <h2 class="section-title">Xác nhận tham dự</h2>
+      <h2 class="rsvp-logo">RSVP</h2>
+      <p class="rsvp-eyebrow">Vui lòng phản hồi trước</p>
+      <!-- SỬA NGÀY HẠN PHẢN HỒI THẬT Ở ĐÂY -->
+      <p class="rsvp-deadline">Ngày 01.12.2026</p>
 
-      <form id="rsvp-form" class="rsvp-form">
-        <label class="field">
-          <span>Họ và tên</span>
-          <input type="text" name="name" required placeholder="Nguyễn Văn A">
-        </label>
+      <div class="rsvp-card">
+        <form id="rsvp-form" class="rsvp-form">
+          <div class="field field--choice">
+            <span class="field__label">Bạn có tham dự đám cưới không? *</span>
+            <label class="choice">
+              <input type="radio" name="attending" value="Có, tôi sẽ tham dự" required>
+              <span class="choice__box"></span>
+              Có, tôi sẽ tham dự
+            </label>
+            <label class="choice">
+              <input type="radio" name="attending" value="Rất tiếc, tôi không thể tham dự">
+              <span class="choice__box"></span>
+              Rất tiếc, tôi không thể tham dự
+            </label>
+          </div>
 
-        <label class="field">
-          <span>Bạn có thể tham dự?</span>
-          <select name="attending" required>
-            <option value="" disabled selected>Chọn câu trả lời</option>
-            <option value="Có, tôi sẽ tham dự">Có, tôi sẽ tham dự</option>
-            <option value="Rất tiếc, tôi không thể tham dự">Rất tiếc, tôi không thể tham dự</option>
-          </select>
-        </label>
+          <label class="field field--underline">
+            <span class="field__label">Họ và tên *</span>
+            <input type="text" name="name" required placeholder="Tên của bạn">
+          </label>
 
-        <label class="field">
-          <span>Số lượng khách (kể cả bạn)</span>
-          <input type="number" name="guests" min="1" max="10" value="1" required>
-        </label>
+          <label class="field field--underline">
+            <span class="field__label">Số lượng khách (kể cả bạn)</span>
+            <input type="number" name="guests" min="1" max="10" value="1">
+          </label>
 
-        <label class="field">
-          <span>Lời nhắn gửi cô dâu &amp; chú rể</span>
-          <textarea name="message" rows="3" placeholder="Gửi lời chúc của bạn..."></textarea>
-        </label>
+          <label class="field field--underline">
+            <span class="field__label">Email (không bắt buộc)</span>
+            <input type="email" name="email" placeholder="ban@email.com">
+          </label>
 
-        <button type="submit" class="btn btn--solid" id="rsvp-submit">Gửi xác nhận</button>
-        <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
-      </form>
+          <label class="field field--textarea">
+            <span class="field__label">Lời nhắn gửi cô dâu chú rể</span>
+            <textarea name="message" rows="3" placeholder="Chia sẻ lời chúc của bạn..."></textarea>
+          </label>
 
-      <div class="rsvp-thankyou" id="rsvp-thankyou" hidden>
-        <p class="rsvp-thankyou__title">Cảm ơn bạn!</p>
-        <p class="rsvp-thankyou__text">Chúng tôi đã nhận được phản hồi của bạn và rất mong được gặp bạn trong ngày cưới.</p>
+          <button type="submit" class="btn btn--send" id="rsvp-submit">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+            Gửi RSVP
+          </button>
+          <p class="rsvp-status" id="rsvp-status" role="status" aria-live="polite"></p>
+        </form>
+
+        <div class="rsvp-thankyou" id="rsvp-thankyou" hidden>
+          <p class="rsvp-thankyou__title">Cảm ơn bạn!</p>
+          <p class="rsvp-thankyou__text">Chúng tôi đã nhận được phản hồi của bạn và rất mong được gặp bạn trong ngày cưới.</p>
+        </div>
       </div>
 
       <p class="footer-note">Cao Ngọc Yến &amp; Hoàng Nhất Tâm · 12.12.2026</p>
